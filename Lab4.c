@@ -1,7 +1,7 @@
 /* Disciplina: Computacao Concorrente */
 /* Prof.: Silvana Rossetto */
 /* Laboratório: 4 */
-/* Codigo: Uso de variáveis de condição e suas operações básicas para sincronização por condição */*
+/* Codigo: Uso de variáveis de condição e suas operações básicas para sincronização por condição */
 /* Aluno: Thiago Campbell // DRE: 118060285*/
 
 #include <pthread.h>
