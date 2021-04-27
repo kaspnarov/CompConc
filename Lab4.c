@@ -30,7 +30,7 @@ void *A (void *t) {
 }
 
 /* Thread 3 */
-void *C (void *t) {
+void *B (void *t) {
     pthread_mutex_lock(&x_mutex);
     if (x == 0) { 
         pthread_cond_wait(&x_cond, &x_mutex);
@@ -46,7 +46,7 @@ void *C (void *t) {
 }
 
 /* Thread 2 */
-void *B (void *t) {
+void *C (void *t) {
     pthread_mutex_lock(&x_mutex);
     if (x == 0) { 
         pthread_cond_wait(&x_cond, &x_mutex);
@@ -79,6 +79,7 @@ int main(int argc, char *argv[]) {
     /* Inicilaiza o mutex (lock de exclusao mutua) e a variavel de condicao */
     pthread_mutex_init(&x_mutex, NULL);
     pthread_cond_init (&x_cond, NULL);
+    pthread_cond_init (&x_cond_2, NULL);
 
     /* Cria as threads */
     pthread_create(&threads[3], NULL, A, NULL);
@@ -95,5 +96,6 @@ int main(int argc, char *argv[]) {
     /* Desaloca variaveis e termina */
     pthread_mutex_destroy(&x_mutex);
     pthread_cond_destroy(&x_cond);
+    pthread_cond_destroy(&x_cond_2);
     return 0;
 }
