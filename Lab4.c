@@ -35,13 +35,13 @@ void *B (void *t) {
     if (x == 0) { 
         pthread_cond_wait(&x_cond, &x_mutex);
     }
-    pthread_mutex_unlock(&x_mutex); 
     x++;
     printf("Sente-se, por favor.\n");
     y++;
     if(y==2){
         pthread_cond_signal(&x_cond_2);
     }
+    pthread_mutex_unlock(&x_mutex); 
     pthread_exit(NULL);
 }
 
@@ -50,14 +50,14 @@ void *C (void *t) {
     pthread_mutex_lock(&x_mutex);
     if (x == 0) { 
         pthread_cond_wait(&x_cond, &x_mutex);
-    }
-    pthread_mutex_unlock(&x_mutex); 
+    } 
     x++;
     printf("Fique à vontade.\n");
     y++;
     if(y == 2){
         pthread_cond_signal(&x_cond_2);
     }
+    pthread_mutex_unlock(&x_mutex); 
     pthread_exit(NULL);
 }
 
@@ -66,9 +66,9 @@ void *D (void *t) {
     pthread_mutex_lock(&x_mutex);
     if (x < 3) { 
         pthread_cond_wait(&x_cond_2, &x_mutex);
-    }
-    pthread_mutex_unlock(&x_mutex); 
+    } 
     printf("Volte sempre!\n");
+    pthread_mutex_unlock(&x_mutex);
     pthread_exit(NULL);
 }
 
